@@ -1,0 +1,21 @@
+Para garantir que não vamos subescrever um arquivo no outro, tenho que me certificar que não teremos arquivos com mesmos nomes.
+
+pseudo hierarquico: tem a ver com buscar as coisas sem ordem nas informações, acho que é uma bagunça que facilita
+
+site que abriram aqui como se a gente entendesse alguma coisa do que ta rolando
+orientdb - 
+nro4j - estruturas não relacionais
+
+swap é alguma coisa que vai lá no disco buscar, não entendi nada, acho que não tão falando português tem a ver com espaço de memoria e guardar o indice de alguma coisa
+
+o que é o dicionario do dicionario? uma estrutura que o valor é novo dicionario (em algum lugar isso faz sentido?? eu espero que sim!)
+
+( soap / corba )
+xml -> json (?)
+
+Pandas e NumPy
+Servem para facilitar a analise de dados e já vem na estrutura.
+(Pesquisar: qual a diferença? qual a indicação de uso?)
+
+##gausiana ou curva de distruição padrão
+

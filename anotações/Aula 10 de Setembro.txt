@@ -1,0 +1,76 @@
+-- Aula Programação para Banco de Dados - 10/09/2022
+O banco de dados relacional precisa dessas 4 coisas para montar um sistema (ex.: contabilidade, vendas, etc): precisa oferecer ACID
+(relembrando 1ª aula):
+ACID:   Atomicidade: 
+        Consistência: dados das transações e espelho do que foi feito na vida real
+        Isolamento: Garantia de que não ocorrerá o acesso por mais de um processo a um conjunto de dados envolvido em uma transação. 
+                    ex: transações de débito e crédito de alguma compra, não deve interferir na ação que um outro usuário esteja fazendo
+        Durabilidade: Garante que não haja perda. Os bancos de dados estruturados possui um mecanismo que pode fazer recuperação. 
+                      Importante para garantir que todas as condições que podem causar perda de dados estejam sendo tratadas.
+**Diferença entre OLAP e BD relacional
+No OLAP, tem a propria estrutura para ser alimentado.
+Diferente do SQL, a forma de construir a relação não é baseada nas tabelas e chaves
+Os dados no OLAP, depois de gerados, são imutáveis (logo, não existe CRUD)
+    Motivo: serve para tomada de decisão, logo, os dados não podem ser alterados.
+    É uma base de dados baseada em fatos históricos
+    Ao invés da informação ser alterada, ela é inserida constantemente
+    Como não preciso alterar o dado, posso trabalhar de forma incremental
+**NoSQL
+-- Banco Não relacional
+-- Não estruturado (Mais de uma forma de relacionar os dados
+-- Não usa SQL
+-- Para gerar relatórios não são bons, pois ele é pra responder perguntas que criamos
+**Família de colunas: estrutura em que temos as colunas organizadas em famílias para consulta. Lembra uma tabela, mas a forma de consultar é diferente
+Ex.: Data Store do Google faz uso dessa estrutura
+Necessário criar uma chave pai. Com a chave pai, podemos definir hierarquia (similar à hierarquia de arquivos), para permitir pesquisas a partir dessa chave    
+**Graph: Quando o que me importa é mais a relação do que os objetos em si, utilizamos o banco Graph.
+--Ex.: Armazém da Amazon, diferente dos tradicionais, que são organizados por tipo de objeto (ex.: papel com papel) guardam tudo com tudo, geralmente os que são vendidos juntos (com base em histórico de compras. Ou seja, o tipo do objeto não é o mais importante.
+--Ex2: Facebook 
+No nivel operacional, que é onde coletamos os dados e não pode haver erro nessa coleta, 
+que não podem perder informações,com foco no dia a dia, utilizamos o bd relacional. 
+No nivel tatico, para orientaração de curto prazo, utilizamos também o bd relacional (pois usamos ERP)
+No nivel gerencial, já começa a precisar de algumas análises mais focadas em longo prazo, então o ideal já é a utilização do bd não relacional
+No nivel estratategico, que precisam identificar/analisar novas oportunidades, utilizamos o bd não relacional
+Não conseguimos conseguir escabilidade e ACID ao mesmo tempo, pois pra ter escabilidade, temos que trabalhar com múltiplas máquinas
+e quando colocamos múltiplos servidores, não conseguimos garantir ACID 100%
+Limitações  do modelo relacional: Como cada nível de decisão da empresa possui uma visão diferente, necessitam de visões diferentes das informações
+e modelos relacionais diferentes, e pelos BD relacionais são orientados às transações, o BD relacional não é indicado para consultas volumosas
+As fontes de dados estão crescendo a cada dia. Deixaram de ser papelada e está virando tudo digital
+Cada vez mais, o foco é na velocidade da consulta e não mais na singularidade dos dados (consultas customizadas para atender os níveis de demanda de cada analista)
+Vantagem de ter um dado imutável: Confiabilidade na análise de tomada de decisão
+**Pilares do Data Warehouse
+--Integrado
+    + Dados de um DW vem de fontes diversas
+    + Os dados podem ser sumarizados (análise quanti) ou eliminados
+    + Dados devem ser padronizados As perguntas que serão foco da análise devem estar na mesma unidade para fazer comparação 
+    (nomes, unidades de medida, sexo, etc)
+    Por exemplo, se fizermos uma análise com base em um valor do câmbio do dia, os valores mudam dia a dia. por isso, devemos 
+    guardar os dados dos preços do dia
+-- Variável em relação ao tempo 
+    + No BD transacional, o dado é o dado atual
+    + Os dados no Data Warehouse sãp relativos a um determinado instante de tempo 
+-- Não volátil
+    + NENHUM dado pode ser alterado depois de incluído do DW
+    + Em um BD transacional podemos inserir, alterar e excluir dados
+    + Em um DW somente é possível fazer inserções e consultas
+    + Garante-se que qualquer consulta a um dado relativo a um determinado período de tempo sempre produza o mesmo resultado
+cow (copy on write) - Cópia em gravação, compartilhamento implícito ou sombreamento, é uma técnica de gestão de recursos
+usada na programaçãp para implementar de forma eficiente uma operação "duplicar" ou "copiar" em recursos modificados (ex.: git)
+O Data Warehouse - DW, é construído a partir das necessidades de informação e a partir dele são gerados  os conjuntos de Data Mart 
+que serão utilizadas pelas áreas de negócio.
+-- Abordagem Bottom Up
+Os Data Marts são construídos de acordo com as necessidades das unidades de negócio e o conjunto de informações que vai dar forma ao 
+Data Warehouse
+** O JOIN FOI SUBSTITUÍDO
+Meios de construir consultas no NoSQL
+    + Hierarquia
+    + Duplicar dados (desnormalizar) - usar os mesmos dados, colocando-os em critérios diferentes de pesquisa
+    + Diferentes modelos para consultas e indexação - No NoSQL, para cada pergunta, devemos definir um índice
+NoSQL -> Joins são desenhados em tempo de modelagem
+SQL -> Joins são manipulados na consulta
+-- O que devemos considerar como prioridade?
+    - Alta consistência - ex.: eventualmente consistente
+    - Alta performance de leitura? - ex.: atualização imediata - redes sociais
+    - Alta performance de escrita?
+
+(Anotações por: Alana)
